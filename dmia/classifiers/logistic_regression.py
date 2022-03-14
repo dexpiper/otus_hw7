@@ -73,7 +73,7 @@ class LogisticRegression:
             m = X_batch.shape[0]
             l = learning_rate
             old_shape = self.w.shape
-            self.w = self.w - l*gradW  # HERE
+            self.w = self.w - l*gradW
             assert self.w.shape == old_shape
 
             #########################################################################
@@ -153,17 +153,15 @@ class LogisticRegression:
         """
         dw = np.zeros_like(self.w)  # initialize the gradient as zero
         loss = 0
-        # print('** Initializing:')
-        # print(f'dw_shape: {dw.shape}')
-        # print(f'self.w_shape: {self.w.shape}')
+
         # Compute loss and gradient. Your code should not contain python loops.
 
         m = X_batch.shape[0]
-        # print(f'shape X_batch: {X_batch.shape}\nshape self.w: {self.w.shape}')
+
         arg = X_batch * self.w.T
-        # print(f'Shape of X_batch * self.w.T: {arg.shape}')
+
         h = sigmoid(arg)
-        # print(f'\nShape of h: {h.shape}\nShape of h - y_batch: {(h - y_batch).shape}\n')
+
         loss = -1/m * np.sum(
             np.dot(np.log(h), y_batch.T) + 
             np.dot(np.log(1 - h), (1 - y_batch.T))
